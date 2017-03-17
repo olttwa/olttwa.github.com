@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Akshat's Blog]]></title>
+  <link href="http://olttwa.com/atom.xml" rel="self"/>
+  <link href="http://olttwa.com/"/>
+  <updated>2017-03-18T04:31:38+05:30</updated>
+  <id>http://olttwa.com/</id>
+  <author>
+    <name><![CDATA[Akshat]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Humane and Effective Ways for Collecting Feedback]]></title>
+    <link href="http://olttwa.com/blog/2017/03/17/humane-and-effective-ways-for-collecting-feedback/"/>
+    <updated>2017-03-17T23:38:31+05:30</updated>
+    <id>http://olttwa.com/blog/2017/03/17/humane-and-effective-ways-for-collecting-feedback</id>
+    <content type="html"><![CDATA[<p>This blogpost will probably change your mind if:</p>
+
+<ul>
+<li>you think numbers matter while collecting feedback</li>
+<li>providing feedback is mandatory for your users</li>
+<li>feedback providers aren&rsquo;t incentivized in your system</li>
+</ul>
+
+
+<p>Disclaimer: This is oriented towards systems providing services
+catered to a huge audience through various service providers. (e.g. GO-JEK,
+Amazon, Uber, etc.)</p>
+
+<!-- more -->
+
+
+<p>Feedback is information about how we are doing in our efforts to reach a
+long-term goal. Keeping this in mind, I will explore what is wrong with
+the current feedback system, how we can take better feedback and why we
+should incentivize feedback givers.</p>
+
+<p>Giving feedback shouldn&rsquo;t be mandatory. When a system sees more than a
+million units of bookings per day, ratings in feedback too don&rsquo;t make
+sense. At this rate, when we make giving feedback mandatory for the
+user, ratings in feedback becomes bad data. There are 3 reasons for
+that.</p>
+
+<p>The first reason is a lower rating doesn&rsquo;t signify anything. For
+example, when the result of my Mathematics examination came as 85 out of
+100, this result doesn&rsquo;t point to the root cause of the problem. There
+could be multiple reasons: I made a silly mistake; I understood
+everything but the time provided wasn&rsquo;t sufficient; I hadn’t studied
+some concepts; some questions were very difficult for my understanding
+of the concept, etc.</p>
+
+<p>The second reason is common knowledge that vendors are fired because of
+lower ratings on their feedback. Many users I know give maximum
+ratings on every feedback simply out of sympathy for the service
+provider. A major cause for this sympathy is constant nagging of
+service providers to give maximum rating on their feedback. We as
+users understand that their very livelihood depends on our feedback
+and end up providing false feedback.</p>
+
+<p>The third reason is users do not revisit a platform immediately after
+the booking ends. In case of a shoddy experience, users forget about it
+by the next time feedback is asked of them, and involuntarily give the
+maximum ratings as per their usual habit.</p>
+
+<p>If we look at every user experience as the test of effectiveness in
+reaching our goal, numbers in feedback end up creating unncecesary
+stress amongst the entities under test; which in turn makes for a bad
+experience for our end-user. I am saying that ratings as part of
+feedback is bad data because it is skewed 85% in the favour of maximum
+ratings. No real system can provide such flawless service in the long
+run. Major flaws will remain hidden as they cannot be inferred from the
+remaining 15% of the data.</p>
+
+<p>I believe I have convinced you that numbers don&rsquo;t matter in case of
+feedback. So the billion dollar question. How to take effective
+feedback? To answer this question, we have to understand what value lies
+in feedback. It has 2 values.</p>
+
+<p>One value of feedback definitely is improvement of our service. In order
+to ensure improvement, feedback should be direct. There should be no
+positives or negatives, just plain feedback. Take tags for instance. We
+can start with some tags like <em>All went well</em>, <em>Payment experience was
+bad</em>, <em>Route taken was more time consuming</em>, <em>Other comments&hellip;</em> Turn
+every unit of customer experience into a test. To take a thorough test,
+our tags must be dynamic. We must improvise upon those tags. We should
+turn feedbacks collected as <em>Other comments&hellip;</em> to tags based on their
+frequency, and remove rarely used tags. Our tags must vary based on
+location, service provider as well as user. If we add a new feature for
+experimenting, we can add a tag for feedback of that feature as well.</p>
+
+<p>Data validation becomes very easier in the long run if feedback is
+direct. Some users' feedback will become more credible compared to
+others. Incentivizing or punishing our service providers based on
+specific improvements becomes a reality. We will have more confidence
+approaching a service provider for improvement as we&rsquo;d have direct data
+from our users.</p>
+
+<p>Another value feedback provides is shaping the future of your business.
+Feedback refers to the past, or at best, to the present. Wouldn&rsquo;t it be
+awesome if sometimes users tell us what to do. There should be provision
+to provide ideas everytime a user asks to give feedback. A text box
+saying: <code>Is there any way we could have served you better?</code> on every
+feedback screen will bring in ideas like these: <em>I prefer travelling in
+a different vehicle</em>, <em>a refreshing drink would have been nice!</em> and so
+on.</p>
+
+<p>So to sum it up, we should not ask our users mandatorily for
+feedback, expect them to give feedback when they feel there is room for
+improvement or newer ideas pop into their heads. But why would any user
+go to such great lengths to provide valuable input that drives our
+business. The answer to every work well done is incentives. When we see
+a user giving correct feedback more than 80% of the time (credibility of
+the user is validated by feedback given by other users. Just think how
+thrilled a user will be to know an idea he/she suggested has been
+incorporated into the system.</p>
+
+<p>After all, every system survives based solely on the loyalty of its
+users. When the users believe they are part of the system, loyalty
+grows. To gain loyalty, we must put the user in the driver&rsquo;s seat.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[o.l.t.t.w.a.]]></title>
+    <link href="http://olttwa.com/blog/2017/03/17/o-dot-l-t-dot-t-w-dot-a/"/>
+    <updated>2017-03-17T23:32:57+05:30</updated>
+    <id>http://olttwa.com/blog/2017/03/17/o-dot-l-t-dot-t-w-dot-a</id>
+    <content type="html"><![CDATA[<p>I believe every decision we make in our lives, we make in order to have One
+Less Thing To Worry About.</p>
+
+<!-- more -->
+
+
+<p>It is very simple. From the start, our parents educate us; try to
+inculcate good values into us. The only goal they are trying to achieve
+is that we&rsquo;ll have less things to worry about when we grow up. That is
+how this philosophy seeps into our mind.</p>
+
+<p>Ofcourse there is a trade-off between long-term and short-term goals.
+When we keep persisting despite failures, it will be beneficial in the
+long-term. When we decide to give up and give-in to distraction, it is
+beneficial in the short-term. But the goal is simple - olttwa.</p>
+
+<p>Many a times, we realize much later that our decisions have
+given rise to hundred more things to worry about. For example,
+fertilizers have caused imbalance in the biological ecosystem; automation has given rise to unemployment and
+many more.</p>
+
+<p>I am learning to design sustainable systems. Please comment here, reach out to me on
+akshat.iitj@gmail.com, or twitter if you wish to discuss anything.</p>
+]]></content>
+  </entry>
+  
+</feed>
