@@ -4,7 +4,7 @@
   <title><![CDATA[Akshat's Blog]]></title>
   <link href="http://olttwa.com/atom.xml" rel="self"/>
   <link href="http://olttwa.com/"/>
-  <updated>2017-04-15T04:27:31+05:30</updated>
+  <updated>2017-08-23T11:58:51+05:30</updated>
   <id>http://olttwa.com/</id>
   <author>
     <name><![CDATA[Akshat]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Article Summary] Time Clocks and the Ordering of Events in a Distributed System]]></title>
+    <link href="http://olttwa.com/blog/2017/08/21/article-summary-time-clocks-and-the-ordering-of-events-in-a-distributed-system/"/>
+    <updated>2017-08-21T22:18:51+05:30</updated>
+    <id>http://olttwa.com/blog/2017/08/21/article-summary-time-clocks-and-the-ordering-of-events-in-a-distributed-system</id>
+    <content type="html"><![CDATA[<p>This scholarly article defines conditions for total ordering of events in a distributed system. Using the concept of total ordering, we see a way to build distributed systems. The article solves the problem of synchronisation in distributed systems.</p>
+
+<!-- more -->
+
+
+<p>The author of this article is Leslie Lamport</p>
+
+<ul>
+<li>First, we see &ldquo;happened before&rdquo; relation amongst events occuring in a distributed system. This is called partial ordering.</li>
+<li>Then, we see conditions for logical clocks. An abstract definition of a clock is to assign a number/time to an event at the time it occurred.</li>
+<li>Using the concept of partial ordering and logical clocks, we define total ordering of events. Prioritization of processes is used to break ties.</li>
+<li>Then we see concept of total ordering being used to solve a mutual exclusion problem. In the problem, a fixed collection of processes are sharing a single resource.</li>
+<li>We see how anomalous behaviours can break the algorithm mentioned to solve the above problem.</li>
+<li>One way to prevent anomalous behaviours is to introduce Strong Clocks in the system. The Strong Clock condition is: <code>If event a has happened before event b (partial ordering defined by special relativity), then timestamp of a is lesser than timestamp of b</code></li>
+<li>To quote the paper: <em>One of the mysteries of the universe is that it is possible to construct a system of physical clocks which, running quite independently of one another, will satisfy the Strong Clock Condition.</em></li>
+<li>Then we see conditions for Physical Clocks to ensure they don&rsquo;t go out of synchronization.</li>
+</ul>
+
+
+<hr />
+
+<p>😀 Thank you for reading this blog. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
+
+<hr />
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Humane and Effective Ways for Collecting Feedback]]></title>
@@ -44,12 +76,12 @@ long-term goal. A system would like to know what users want continued; stopped o
 <p>I see 3 major problems with the current feedback system:</p>
 
 <ol>
-<li><p>Ratings don&rsquo;t signify anything. They end up creating unncecesary
+<li><p>Ratings don&rsquo;t signify anything. They end up creating unnececesary
 stress amongst drivers, which in turn makes for a bad experience for users. Online product ratings average about 4.3 out of 5 stars all together, says PowerReviews, which runs ratings for more than 1,000 online shops. <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> For
 example, when I scored 35 off 50 in an examination, it doesn&rsquo;t point to the root cause of the problem. There
 could be multiple reasons: I made a silly mistake; the time provided wasn&rsquo;t sufficient; I hadn’t studied
 some concepts; some questions were very difficult for my understanding
-of the concept, etc. There is some problem if I score 35 marks on average accross hundreds of examinations, but the root cause of the problem cannot be found merely with numbers.</p></li>
+of the concept, etc. There is some problem if I score 35 marks on average across hundreds of examinations, but the root cause of the problem cannot be found merely with numbers.</p></li>
 <li><p>It is common knowledge that drivers' earnings are affected because of
 lower ratings on their feedback. Users give positive feedback even on bad experiences simply out of sympathy for the driver. A major cause for this sympathy is constant nagging of
 drivers to give positive feedback.</p></li>
@@ -62,7 +94,7 @@ drivers to give positive feedback.</p></li>
 <p>Here are some suggestions which might directly impact the quality of feedback a system gathers:</p>
 
 <ul>
-<li><p>Keep the feedback parameters dynamic. I will take example of an alarm clock. Every morning I hit snooze/dismiss button almost involuntarily because I know where the button on my alarm clock is and I don&rsquo;t put a lot of thought at that point of time. Don&rsquo;t let users give valuable feedback involuntarity.</p></li>
+<li><p>Keep the feedback parameters dynamic. I will take example of an alarm clock. Every morning I hit snooze/dismiss button almost involuntarily because I know where the button on my alarm clock is and I don&rsquo;t put a lot of thought at that point of time. Don&rsquo;t let users give valuable feedback involuntarily.</p></li>
 <li><p>Let the users make as less decisions as possible when requested for feedback. I suggest 3 buttons. One indicates positive feedback, another negative. Upon clicking the negative button, request for further pre-defined standard tags to know reason of bad experience. The third button is dynamic; which is customized based on time, price, area and driver. For example, we can gather feedback for navigation in certain areas, route selection of ride during rush hours, rash drivings feedback for certain drivers, etc. This helps in finding the root cause of a problem.</p></li>
 <li><p>Timing is important. Know when most honest and valid feedback can be obtained. For a taxi ride, a user can be requested for feedback if he/she revisits the platform immediately after the booking. For food deliveries, wait atleast for 12 hours so the user knows nothing&rsquo;s wrong with his/her tummy before giving feedback. For non-consumable deliveries, wait for 1 month until the user finds out the durability of the product after decent amount of usage. When users doesn&rsquo;t revisit the platform for a considerable amount of time, never prompt for feedback. This will solve the 3rd problem. If they want to give feedback, they can always visit the bookings history page and give feedback.</p></li>
 <li><p>Communicate problem to the user if it is known beforehand. Delay in fulfillment of service due to bad weather, traffic, etc. if communicated to the user on the feedback screen will likely result in more accurate data. This combined with dynamic parameterization of feedback can probably solve the first two problems.</p></li>
