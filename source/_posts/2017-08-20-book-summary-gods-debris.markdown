@@ -12,3 +12,6 @@ categories:
 - The world isn't actually building itself up, it is tearing itself down. We do not have sustainable practices. We have caused damage that is irreversible. We have reduced biodiversity and made many species extinct.
 - Just because we have more information than we used to have before, doesn't mean we are progressing.
 - One good thing this book offers is a new angle of looking at things. You actually think if this line of thought is useful or not.
+    - A lot of assumptions, but complements to the author for his imagination.
+    - - God can be bored is the assumption entire book is based on.
+    - - There is an illusion that we are gaining control of the earth, whereas the opposite is entirely true. We have destroyed biodiversity to a level that will take more than a thousand years to build back.

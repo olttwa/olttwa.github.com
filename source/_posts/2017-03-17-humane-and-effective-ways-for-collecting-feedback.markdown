@@ -71,6 +71,6 @@ grows.
 
 ***
 ***
-😀 Thank you for reading this blog. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com
+I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com
 ***
 [^1]: [an article on wsj](https://www.wsj.com/articles/when-4-3-stars-is-average-the-internets-grade-inflation-problem-1491414200)
