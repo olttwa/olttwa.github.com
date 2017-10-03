@@ -67,6 +67,7 @@ The highest amount of yak-shaving went in this decision. I knew in my heart all 
 I won't mention the reasons for not choosing HAProxy or NGINX. [Envoyproxy](http://envoyproxy.github.io/) wins hands-down because it fit the following use-cases we needed:
 
 - Our frontend application can switch to HTTP/1.1 based REST apis anytime it wants😍 Envoy supports a gRPC bridge filter that allows gRPC requests to be sent to Envoy over HTTP/1.1. Envoy then translates the requests to HTTP/2 for transport to the target server. The response is translated back to HTTP/1.1[^4]
+- If we decide to switch to `Application level LB`, only envoy has support for that in HTTP/2.
 - Future of Envoy is promising[^5]
 - Has first class support for HTTP/2
 - Hot restarts
