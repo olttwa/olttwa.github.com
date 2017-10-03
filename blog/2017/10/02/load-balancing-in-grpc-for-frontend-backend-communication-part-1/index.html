@@ -175,6 +175,7 @@
 
 <ul>
 <li>Our frontend application can switch to HTTP/1.1 based REST apis anytime it wants😍 Envoy supports a gRPC bridge filter that allows gRPC requests to be sent to Envoy over HTTP/1.1. Envoy then translates the requests to HTTP/2 for transport to the target server. The response is translated back to HTTP/1.1<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></li>
+<li>If we decide to switch to <code>Application level LB</code>, only envoy has support for that in HTTP/2.</li>
 <li>Future of Envoy is promising<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
 <li>Has first class support for HTTP/2</li>
 <li>Hot restarts</li>
