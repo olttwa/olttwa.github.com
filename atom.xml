@@ -4,7 +4,7 @@
   <title><![CDATA[Akshat's Blog]]></title>
   <link href="http://olttwa.com/atom.xml" rel="self"/>
   <link href="http://olttwa.com/"/>
-  <updated>2017-12-09T17:01:19+05:30</updated>
+  <updated>2018-04-05T23:50:51+05:30</updated>
   <id>http://olttwa.com/</id>
   <author>
     <name><![CDATA[Akshat]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sharing Credentials With Friends]]></title>
+    <link href="http://olttwa.com/blog/2018/04/05/sharing-credentials-with-friends/"/>
+    <updated>2018-04-05T23:23:25+05:30</updated>
+    <id>http://olttwa.com/blog/2018/04/05/sharing-credentials-with-friends</id>
+    <content type="html"><![CDATA[<p>While sharing credentials with our friends at work, we mostly use slack, mail or messaging platforms. For a more secure and speedy way, read ahead!</p>
+
+<!-- more -->
+
+
+<p>A few days back, I had to share a private key for our service account with a friend at my work. I used slack for that. Now my friend, slack and NSA 😱 all have our credentials!</p>
+
+<p>A more secure and speedy alternative is to use <code>netcat</code></p>
+
+<p>To send credentials over a local network, put them in a file and use this:</p>
+
+<p>For receiving data:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ hostname -I (for linux)
+</span><span class='line'>'or'
+</span><span class='line'>$ ipconfig getifaddr en0 (for os X)
+</span><span class='line'>192.168.0.145
+</span><span class='line'>$ nc -l | 9931 &gt; secret</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For sending data:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cat secret | nc 192.168.0.145 9931</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After this, credentials will be saved to file on the receiver&rsquo;s machine. This will work for huge files with other content as well.</p>
+
+<p>Thanks to Julia Evans for some extremely simple and helpful <a href="https://jvns.ca/">blogs</a></p>
+
+<p>I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Load Balancing in gRPC for Frontend Backend Communication Part:1]]></title>
