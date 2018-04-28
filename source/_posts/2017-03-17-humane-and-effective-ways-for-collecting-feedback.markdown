@@ -3,7 +3,7 @@ layout: post
 title: "Humane and Effective ways for collecting Feedback"
 date: 2017-03-17 23:38:31 +0530
 comments: true
-categories: 
+categories:
 ---
 This blogpost will probably change your mind if:
 
@@ -54,8 +54,7 @@ Here are some suggestions which might directly impact the quality of feedback a 
 
 ## Incentivizing users ##
 
-Feedback refers to the past, or at best, to the present. Wouldn't it be
-awesome if users shape the future of business? Identify users who are consistently giving accurate feedback; and take the pain of giving critical comments. Request these users for a detailed survey and incentivize them. This is very important. If a system has 1 million+ users, it should utilize extensive surveys to their advantage. On the plus side, users treating a platform with sincerity will stay delighted.
+Feedback refers to the past, or at best, to the present. Wouldn't it be awesome if users shape the future of business? Identify users who are consistently giving accurate feedback; and take the pain of giving critical comments. Request these users for a detailed survey and incentivize them. This is very important. If a system has 1 million+ users, it should utilize extensive surveys to their advantage. On the plus side, users treating a platform with sincerity will stay delighted.
 
 ## Summary ##
 
