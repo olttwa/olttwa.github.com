@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>To Log or Not to Log - Akshat's Blog</title>
+  <meta name="author" content="Akshat">
+
+  
+  <meta name="description" content="Anyone who has been on production support can testify that time taken to resolve issues is indirectly proportional to effectiveness of application &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Akshat's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-92993154-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Akshat's Blog</a></h1>
+  
+    <h2>I share my perception of Life, the Universe and Everything here.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="olttwa.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">To Log or Not to Log</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-04-28T21:23:08+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:23 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://olttwa.com">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Anyone who has been on production support can testify that time taken to resolve issues is indirectly proportional to effectiveness of application logs. To understand what to log and more importantly what <strong>not</strong>, read ahead!</p>
+
+<!-- more -->
+
+
+<p>Logging is to engineers as X-ray is to doctors. With respect to an application, logging brings visibility under the hood.</p>
+
+<p>Understanding what to log and what <strong>not</strong> is paramout. An application at my company handling throughput of 250k rpm was logging every request. Converging on the root cause of an issue from logs would be like finding a needle in a haystack.</p>
+
+<p>To Log or Not To Log is an objective question if looked from a production support standpoint. Log levels help us maintain sanity. Let&rsquo;s understand the role of levels in logging.</p>
+
+<h2>Log Levels</h2>
+
+<p>When an application logs, it&rsquo;s sending a message to it&rsquo;s owners. Messages have different meanings and warrant different actions under different levels.</p>
+
+<p>The severity of log levels in increasing order is: <a href="#debug">debug</a> &lt; <a href="#info">info</a> &lt;<a href="#warn">warn</a> &lt;<a href="#error">error</a> &lt;<a href="#fatal">fatal</a> &lt; <a href="#panic">panic</a>. Levels can be configured for an application to maintain sanity of logs. Application will only log messages of higher severity than configured log levels.</p>
+
+<p>We&rsquo;ll take example of an <code>Order Management Service aka OMS</code> to understand what should be logged. It handles orders for a ride-hailing service. The flow of OMS is: customer requests for a ride -> OMS assigns driver to the ride -> ride reaches completion -> driver gets payment for the ride.</p>
+
+<h4>Info</h4>
+
+<p>These messages are lifecycle events. They highlight the progress of an application.</p>
+
+<p><code>Example:</code> <em>application start/stop</em>; <em>order completion in OMS</em></p>
+
+<h4>Debug</h4>
+
+<p>These messages help in figuring out weird stuff. Logging at <em>debug</em> level means tracking state changes at every step of an application.</p>
+
+<p><code>Example:</code> Let&rsquo;s say a driver accepts order ABC, but OMS assigns order DEF. To find root cause of issues, log all events: <em>creation of order</em>, <em>list of eligible drivers for an order</em>, <em>acceptance of booking by a driver</em>, <em>saving state in OMS</em></p>
+
+<h4>Warn</h4>
+
+<p>These messages are potentially harmful situations. These issues need to be fixed but may not require immediate intervention.</p>
+
+<p><code>Example:</code> Let&rsquo;s say OMS talks to a payment service for paying drivers. On breach of SLA with payment service, OMS will timeout and retry the request. Log at warning level: <em>payment service SLA breached. Retrying</em></p>
+
+<h4>Error</h4>
+
+<p>These messages are of considerable importance. Log at <em>error</em> level when normal flow of execution is blocked, and fixing the issue requires human intervention. You should keep an eye out for error logs; so you can fix issues manually to maintain consistency in system.</p>
+
+<p><code>Example:</code> If OMS has exhausted driver payment retries to payment service, Log <em>Error paying driver XYZ for order ABC</em>. Later pay the driver manually.</p>
+
+<h4>Fatal</h4>
+
+<p>These messages are severe events that might cause the application to terminate. There should be immediate action when application logs at fatal level.</p>
+
+<p><code>Example:</code> <em>Running out of disk space</em>, <em>total loss of network connectivity</em></p>
+
+<h4>Panic</h4>
+
+<p>These messages are exceptional scenarios which should be fixed immediately. Log this when application panics and terminates or recovers</p>
+
+<p><code>Example:</code> <em>database wasn&rsquo;t configured</em>, <em>number divided by by 0</em></p>
+
+<h2>Plan of Action</h2>
+
+<p>In production environment, ideally, application should only log on severity of <strong>warn level</strong> and above. Application should log at <strong>debug and info level</strong> only in staging, integration and UAT environment for the benefit of engineers and QAs.</p>
+
+<p><strong>warn level</strong> issues should be tracked and fixed. <strong>error level</strong> issues should be fixed ASAP. <strong>fatal and panic level</strong> issues warrant immediate attention.</p>
+
+<h2>Log Retention</h2>
+
+<p>Retaining logs beyond 3 days defeats the purpose of logs. Ideally logs shouldn&rsquo;t be retained beyond 24 hours, but considering no work on weekends, adding 48 hours should be more than enough.</p>
+
+<hr />
+
+<hr />
+
+<p>I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
+
+<hr />
+
+<h5>References</h5>
+
+<p><a href="https://www.ibm.com/support/knowledgecenter/en/SSEP7J_10.2.2/com.ibm.swg.ba.cognos.ug_rtm_wb.10.2.2.doc/c_n30e74.html">https://www.ibm.com/support/knowledgecenter/en/SSEP7J_10.2.2/com.ibm.swg.ba.cognos.ug_rtm_wb.10.2.2.doc/c_n30e74.html</a></p>
+
+<p><a href="https://stackoverflow.com/questions/7839565/logging-levels-logback-rule-of-thumb-to-assign-log-levels">https://stackoverflow.com/questions/7839565/logging-levels-logback-rule-of-thumb-to-assign-log-levels</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Akshat</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-04-28T21:23:08+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:23 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/" data-via="akshatiitj" data-counturl="http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/04/05/sharing-credentials-with-friends/" title="Previous Post: Sharing credentials with friends">&laquo; Sharing credentials with friends</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/04/28/to-log-or-not-to-log/">To Log or Not to Log</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/04/05/sharing-credentials-with-friends/">Sharing Credentials With Friends</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/load-balancing-in-grpc-for-frontend-backend-communication-part-1/">Load Balancing in gRPC for Frontend Backend Communication Part:1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/08/21/article-summary-time-clocks-and-the-ordering-of-events-in-a-distributed-system/">[Article Summary] Time Clocks and the Ordering of Events in a Distributed System</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/17/humane-and-effective-ways-for-collecting-feedback/">Humane and Effective Ways for Collecting Feedback</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/olttwa">@olttwa</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'olttwa',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Akshat -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'http-olttwa-com';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/';
+        var disqus_url = 'http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

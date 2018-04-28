@@ -4,7 +4,7 @@
   <title><![CDATA[Akshat's Blog]]></title>
   <link href="http://olttwa.com/atom.xml" rel="self"/>
   <link href="http://olttwa.com/"/>
-  <updated>2018-04-05T23:50:51+05:30</updated>
+  <updated>2018-04-29T00:33:02+05:30</updated>
   <id>http://olttwa.com/</id>
   <author>
     <name><![CDATA[Akshat]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[To Log or Not to Log]]></title>
+    <link href="http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/"/>
+    <updated>2018-04-28T21:23:08+05:30</updated>
+    <id>http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log</id>
+    <content type="html"><![CDATA[<p>Anyone who has been on production support can testify that time taken to resolve issues is indirectly proportional to effectiveness of application logs. To understand what to log and more importantly what <strong>not</strong>, read ahead!</p>
+
+<!-- more -->
+
+
+<p>Logging is to engineers as X-ray is to doctors. With respect to an application, logging brings visibility under the hood.</p>
+
+<p>Understanding what to log and what <strong>not</strong> is paramout. An application at my company handling throughput of 250k rpm was logging every request. Converging on the root cause of an issue from logs would be like finding a needle in a haystack.</p>
+
+<p>To Log or Not To Log is an objective question if looked from a production support standpoint. Log levels help us maintain sanity. Let&rsquo;s understand the role of levels in logging.</p>
+
+<h2>Log Levels</h2>
+
+<p>When an application logs, it&rsquo;s sending a message to it&rsquo;s owners. Messages have different meanings and warrant different actions under different levels.</p>
+
+<p>The severity of log levels in increasing order is: <a href="#debug">debug</a> &lt; <a href="#info">info</a> &lt;<a href="#warn">warn</a> &lt;<a href="#error">error</a> &lt;<a href="#fatal">fatal</a> &lt; <a href="#panic">panic</a>. Levels can be configured for an application to maintain sanity of logs. Application will only log messages of higher severity than configured log levels.</p>
+
+<p>We&rsquo;ll take example of an <code>Order Management Service aka OMS</code> to understand what should be logged. It handles orders for a ride-hailing service. The flow of OMS is: customer requests for a ride -> OMS assigns driver to the ride -> ride reaches completion -> driver gets payment for the ride.</p>
+
+<h4>Info</h4>
+
+<p>These messages are lifecycle events. They highlight the progress of an application.</p>
+
+<p><code>Example:</code> <em>application start/stop</em>; <em>order completion in OMS</em></p>
+
+<h4>Debug</h4>
+
+<p>These messages help in figuring out weird stuff. Logging at <em>debug</em> level means tracking state changes at every step of an application.</p>
+
+<p><code>Example:</code> Let&rsquo;s say a driver accepts order ABC, but OMS assigns order DEF. To find root cause of issues, log all events: <em>creation of order</em>, <em>list of eligible drivers for an order</em>, <em>acceptance of booking by a driver</em>, <em>saving state in OMS</em></p>
+
+<h4>Warn</h4>
+
+<p>These messages are potentially harmful situations. These issues need to be fixed but may not require immediate intervention.</p>
+
+<p><code>Example:</code> Let&rsquo;s say OMS talks to a payment service for paying drivers. On breach of SLA with payment service, OMS will timeout and retry the request. Log at warning level: <em>payment service SLA breached. Retrying</em></p>
+
+<h4>Error</h4>
+
+<p>These messages are of considerable importance. Log at <em>error</em> level when normal flow of execution is blocked, and fixing the issue requires human intervention. You should keep an eye out for error logs; so you can fix issues manually to maintain consistency in system.</p>
+
+<p><code>Example:</code> If OMS has exhausted driver payment retries to payment service, Log <em>Error paying driver XYZ for order ABC</em>. Later pay the driver manually.</p>
+
+<h4>Fatal</h4>
+
+<p>These messages are severe events that might cause the application to terminate. There should be immediate action when application logs at fatal level.</p>
+
+<p><code>Example:</code> <em>Running out of disk space</em>, <em>total loss of network connectivity</em></p>
+
+<h4>Panic</h4>
+
+<p>These messages are exceptional scenarios which should be fixed immediately. Log this when application panics and terminates or recovers</p>
+
+<p><code>Example:</code> <em>database wasn&rsquo;t configured</em>, <em>number divided by by 0</em></p>
+
+<h2>Plan of Action</h2>
+
+<p>In production environment, ideally, application should only log on severity of <strong>warn level</strong> and above. Application should log at <strong>debug and info level</strong> only in staging, integration and UAT environment for the benefit of engineers and QAs.</p>
+
+<p><strong>warn level</strong> issues should be tracked and fixed. <strong>error level</strong> issues should be fixed ASAP. <strong>fatal and panic level</strong> issues warrant immediate attention.</p>
+
+<h2>Log Retention</h2>
+
+<p>Retaining logs beyond 3 days defeats the purpose of logs. Ideally logs shouldn&rsquo;t be retained beyond 24 hours, but considering no work on weekends, adding 48 hours should be more than enough.</p>
+
+<hr />
+
+<hr />
+
+<p>I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
+
+<hr />
+
+<h5>References</h5>
+
+<p><a href="https://www.ibm.com/support/knowledgecenter/en/SSEP7J_10.2.2/com.ibm.swg.ba.cognos.ug_rtm_wb.10.2.2.doc/c_n30e74.html">https://www.ibm.com/support/knowledgecenter/en/SSEP7J_10.2.2/com.ibm.swg.ba.cognos.ug_rtm_wb.10.2.2.doc/c_n30e74.html</a></p>
+
+<p><a href="https://stackoverflow.com/questions/7839565/logging-levels-logback-rule-of-thumb-to-assign-log-levels">https://stackoverflow.com/questions/7839565/logging-levels-logback-rule-of-thumb-to-assign-log-levels</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sharing Credentials With Friends]]></title>
@@ -40,7 +126,7 @@
 </span><span class='line'>'or'
 </span><span class='line'>$ ipconfig getifaddr en0 (for os X)
 </span><span class='line'>192.168.0.145
-</span><span class='line'>$ nc -l | 9931 &gt; secret</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>$ nc -l 9931 &gt; secret</span></code></pre></td></tr></table></div></figure>
 
 
 <p>For sending data:</p>
@@ -266,8 +352,7 @@ drivers to give positive feedback.</p></li>
 
 <h2>Incentivizing users</h2>
 
-<p>Feedback refers to the past, or at best, to the present. Wouldn&rsquo;t it be
-awesome if users shape the future of business? Identify users who are consistently giving accurate feedback; and take the pain of giving critical comments. Request these users for a detailed survey and incentivize them. This is very important. If a system has 1 million+ users, it should utilize extensive surveys to their advantage. On the plus side, users treating a platform with sincerity will stay delighted.</p>
+<p>Feedback refers to the past, or at best, to the present. Wouldn&rsquo;t it be awesome if users shape the future of business? Identify users who are consistently giving accurate feedback; and take the pain of giving critical comments. Request these users for a detailed survey and incentivize them. This is very important. If a system has 1 million+ users, it should utilize extensive surveys to their advantage. On the plus side, users treating a platform with sincerity will stay delighted.</p>
 
 <h2>Summary</h2>
 
