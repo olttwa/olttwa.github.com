@@ -5,7 +5,7 @@ date: 2018-04-28 21:23:08 +0530
 comments: true
 categories:
 ---
-Anyone who has been on production support can testify that time taken to resolve issues is indirectly proportional to effectiveness of application logs. To understand what to log and more importantly what **not**, read ahead!
+Anyone who has been on production support can testify that time taken to resolve issues is inversely proportional to effectiveness of application logs. To understand what to log and more importantly what **not**, read ahead!
 
 <!-- more -->
 
