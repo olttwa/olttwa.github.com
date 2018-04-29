@@ -8,17 +8,17 @@
   <id>http://olttwa.com/</id>
   <author>
     <name><![CDATA[Akshat]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[To Log or Not to Log]]></title>
     <link href="http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log/"/>
     <updated>2018-04-28T21:23:08+05:30</updated>
     <id>http://olttwa.com/blog/2018/04/28/to-log-or-not-to-log</id>
-    <content type="html"><![CDATA[<p>Anyone who has been on production support can testify that time taken to resolve issues is indirectly proportional to effectiveness of application logs. To understand what to log and more importantly what <strong>not</strong>, read ahead!</p>
+    <content type="html"><![CDATA[<p>Anyone who has been on production support can testify that time taken to resolve issues is inversely proportional to effectiveness of application logs. To understand what to log and more importantly what <strong>not</strong>, read ahead!</p>
 
 <!-- more -->
 
@@ -98,7 +98,7 @@
 <p><a href="https://stackoverflow.com/questions/7839565/logging-levels-logback-rule-of-thumb-to-assign-log-levels">https://stackoverflow.com/questions/7839565/logging-levels-logback-rule-of-thumb-to-assign-log-levels</a></p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Sharing Credentials With Friends]]></title>
     <link href="http://olttwa.com/blog/2018/04/05/sharing-credentials-with-friends/"/>
@@ -142,7 +142,7 @@
 <p>I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Load Balancing in gRPC for Frontend Backend Communication Part:1]]></title>
     <link href="http://olttwa.com/blog/2017/10/02/load-balancing-in-grpc-for-frontend-backend-communication-part-1/"/>
@@ -260,7 +260,7 @@
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[[Article Summary] Time Clocks and the Ordering of Events in a Distributed System]]></title>
     <link href="http://olttwa.com/blog/2017/08/21/article-summary-time-clocks-and-the-ordering-of-events-in-a-distributed-system/"/>
@@ -292,7 +292,7 @@
 <hr />
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Humane and Effective Ways for Collecting Feedback]]></title>
     <link href="http://olttwa.com/blog/2017/03/17/humane-and-effective-ways-for-collecting-feedback/"/>
@@ -386,7 +386,7 @@ grows.</p>
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[o.l.t.t.w.a.]]></title>
     <link href="http://olttwa.com/blog/2017/03/17/o-dot-l-t-dot-t-w-dot-a/"/>
@@ -417,5 +417,5 @@ many more.</p>
 akshat.iitj@gmail.com, or twitter if you wish to discuss anything.</p>
 ]]></content>
   </entry>
-  
+
 </feed>
