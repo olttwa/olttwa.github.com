@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Proctor: An Automation Orchestrator - Akshat's Blog</title>
+  <meta name="author" content="Akshat">
+
+  
+  <meta name="description" content="Amazon web store had an insane requirement. Every single item added to cart should never be amiss. Lo and Behold! DynamoDB was born. 1
+Insane &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Akshat's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-92993154-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Akshat's Blog</a></h1>
+  
+    <h2>I share my perception of Life, the Universe and Everything here.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="olttwa.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Proctor: An Automation Orchestrator</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-07-25T21:54:56+05:30'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:54 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://olttwa.com">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Amazon web store had an insane requirement. Every single item added to cart should never be amiss. Lo and Behold! DynamoDB was born.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Insane requirements drive the best innovation</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Proctor, a developer friendly automation orchestrator, was born out of one such insane requirement:</p>
+
+<ul>
+<li>Centralize automation across org</li>
+<li>Enable developers' contribution to automation</li>
+<li>Enable developers' utilization of automation</li>
+</ul>
+
+
+<!-- more -->
+
+
+<hr />
+
+<h3>Conception of Proctor</h3>
+
+<p>Thus, proctor was born. Behold a demo of proctor. I need <code>proctor.gojek.com</code> domain to point to <code>10.1.2.3</code> IP address. Using just a binary, I can run automation to create domain name records. Behind the scenes, the automation creates a domain name in <a href="link-to-route53">AWS route53</a>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>video/gif of running above job
+</span><span class='line'>Caption: nslookup proctor.gojek.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Note that in order to create a domain name record, I needed neither access to AWS nor knowledge of route53.</code></p>
+
+<hr />
+
+<h3>Getting here</h3>
+
+<p>Go-Jek is a high growth startup <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. As Matt Klien correctly observes in <a href="blog">this blog</a>, Go-Jek too formed a systems team in the early days to cope with maddening infrastructure requirements. The result though good in the short-term, proved catastrophic in the long-term. We ended up with:</p>
+
+<ul>
+<li>A plethora of automation scripts spread across org.
+<code>image: https://docs.google.com/presentation/d/1e1MY3QpIYvEg2R-ickE95Ui4M6kfu9dNCywTkuGvNZw/edit#slide=id.g35c40a82c9_0_259</code></li>
+<li>Running above scripts required installing dependencies on each machine, not to mention access management for infra management tools
+<code>image: https://docs.google.com/presentation/d/1e1MY3QpIYvEg2R-ickE95Ui4M6kfu9dNCywTkuGvNZw/edit#slide=id.g35c5a44ec9_0_0</code></li>
+</ul>
+
+
+<hr />
+
+<h3>Running into problems</h3>
+
+<h5>Accidents</h5>
+
+<p>Using a kitchen knife you can cut vegetables and cook delicious food. Lose focus, and you end up hurting yourselves (sometimes others too). This goes without saying that widespread access to powerful tools like knife, AWS, gcloud has resulted in VMs being deleted and databases being dropped accidentally.</p>
+
+<h5>Maintenance of automation</h5>
+
+<p>Having automation spread across org resulted in:</p>
+
+<ul>
+<li>Difficult onboarding of users to use automation scripts</li>
+<li>Propogating changes in automation across org</li>
+<li>Same task automated in multiple ways aka duplication of effort</li>
+</ul>
+
+
+<hr />
+
+<h3>Solving problems</h3>
+
+<h5>Centralize automation across org</h5>
+
+<ul>
+<li>central automation reservoir (1st component)</li>
+<li>since it&rsquo;s git, automation is versioned</li>
+<li>proctord (a web service) takes care of running this automation (2nd component)</li>
+</ul>
+
+
+<h5>Enable developers' contribution to automation</h5>
+
+<ul>
+<li>automation is packaged inside docker images</li>
+<li>immutable infra</li>
+<li>No restraints. ruby, python, bash, perl choose whatever you&rsquo;d like!</li>
+</ul>
+
+
+<h5>Enable developers' utilization of automation</h5>
+
+<ul>
+<li>proctor binary sits on developers' machines. (3rd component)</li>
+<li>on executing an automation, the binary talks to proctord</li>
+<li>logs of automation script are streamed on the developer&rsquo;s machine from proctord to the binary</li>
+<li>developer is decoupled from addition/modification/deletion of automation. all changes in automation reservoir are registered to proctord. The binary reflects changes when it talks to proctord</li>
+</ul>
+
+
+<hr />
+
+<h3>Impact</h3>
+
+<p>We&rsquo;ve launched beta of Proctor at Go-Jek<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. Usage of automation across org has reduced ad-hoc tasks for our team by 70% over the past 3 months.</p>
+
+<p>Instead of providing access to powerful infra management tools;  we now build the utilities as automation and distribute it using Proctor. We now have controlled access to powerful tools.<a href="safety%20increases%20product%20usage">^3</a></p>
+
+<hr />
+
+<h2>Open sourcing Proctor</h2>
+
+<p>We&rsquo;ve open sourced proctor. You can find the source code <a href="https://github.com/gojektech/proctor">here</a></p>
+
+<p>In an upcoming blog, we&rsquo;ll take a deep dive into the architecture of Proctor. We&rsquo;ll answer questions such as why using rundeck for automation didn&rsquo;t work for us, how we scale proctor infinitely, how do we manage secrets required to access powerful tools using proctord, etc.</p>
+
+<p>I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://a.com">a blog citing growth of go-jek</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Awaiting authentication before launching v1.0.0<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Akshat</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-07-25T21:54:56+05:30'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:54 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator/" data-via="akshatiitj" data-counturl="http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/04/28/to-log-or-not-to-log/" title="Previous Post: To Log Or Not To Log">&laquo; To Log Or Not To Log</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/07/25/proctor-an-automation-orchestrator/">Proctor: An Automation Orchestrator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/04/28/to-log-or-not-to-log/">To Log or Not to Log</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/04/05/sharing-credentials-with-friends/">Sharing Credentials With Friends</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/load-balancing-in-grpc-for-frontend-backend-communication-part-1/">Load Balancing in gRPC for Frontend Backend Communication Part:1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/08/21/article-summary-time-clocks-and-the-ordering-of-events-in-a-distributed-system/">[Article Summary] Time Clocks and the Ordering of Events in a Distributed System</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/olttwa">@olttwa</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'olttwa',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Akshat -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'http-olttwa-com';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator/';
+        var disqus_url = 'http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
