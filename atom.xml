@@ -4,7 +4,7 @@
   <title><![CDATA[Akshat's Blog]]></title>
   <link href="http://olttwa.com/atom.xml" rel="self"/>
   <link href="http://olttwa.com/"/>
-  <updated>2018-08-09T02:08:04+05:30</updated>
+  <updated>2018-08-10T02:31:16+05:30</updated>
   <id>http://olttwa.com/</id>
   <author>
     <name><![CDATA[Akshat]]></name>
@@ -18,18 +18,16 @@
     <link href="http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator/"/>
     <updated>2018-07-25T21:54:56+05:30</updated>
     <id>http://olttwa.com/blog/2018/07/25/proctor-an-automation-orchestrator</id>
-    <content type="html"><![CDATA[<p>Amazon web store had an insane requirement. Every single item added to cart should never be amiss. Lo and Behold! DynamoDB was born.</p>
+    <content type="html"><![CDATA[<p>Amazon had an insane requirement. Every product added to cart should never be missed. Lo and Behold! DynamoDB was born.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Insane requirements drive the best innovation</span></code></pre></td></tr></table></div></figure>
+<p><code>Insane requirements drive the best innovation</code></p>
 
-
-<p>Proctor, a developer friendly automation orchestrator, was born out of one such insane requirement:</p>
+<p>Proctor, a developer friendly automation orchestrator, was born out of similar requirements:</p>
 
 <ul>
 <li>Centralize automation across org</li>
-<li>Enable developers' contribution to automation</li>
-<li>Enable developers' utilization of automation</li>
+<li>Democratize contribution to automation</li>
+<li>Democratize utilization of automation</li>
 </ul>
 
 
@@ -38,48 +36,46 @@
 
 <hr />
 
-<h3>Conception of Proctor</h3>
+<h3>Conception</h3>
 
-<p>Thus, proctor was born. Behold a demo of proctor. I need <code>proctor.gojek.com</code> domain to point to <code>10.1.2.3</code> IP address. Using just a binary, I can run automation to create domain name records. Behind the scenes, the automation creates a domain name in <a href="link-to-route53">AWS route53</a>.</p>
+<p>Thus, Proctor was born. Using Proctor, let&rsquo;s point proctor.gojek.com domain to <em>2.0.1.8</em> IP address. Using <em>proctor binary</em>, we can run <em>Procs -aka automation</em> to create domain name records. Behind the scenes, <code>dns-creation</code> <em>Proc</em> creates a domain name record in <a href="aws.amazon.com/route53">AWS route53</a>.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>video/gif of running above job
-</span><span class='line'>Caption: nslookup proctor.gojek.com</span></code></pre></td></tr></table></div></figure>
+<p><img src="http://olttwa.com/images/running-procs.gif" alt="running-procs" /></p>
 
-
-<p><code>Note that in order to create a domain name record, I needed neither access to AWS nor knowledge of route53.</code></p>
+<p><code>NOTE: To create a domain name record, we needed neither access to AWS nor knowledge of route53</code></p>
 
 <hr />
 
 <h3>Getting here</h3>
 
-<p>Go-Jek is a high growth startup <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. As Matt Klien correctly observes in <a href="blog">this blog</a>, Go-Jek too formed a systems team in the early days to cope with maddening infrastructure requirements. The result though good in the short-term, proved catastrophic in the long-term. We ended up with:</p>
+<p>Go-Jek is a high growth startup <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. As Matt Klein correctly observes in <a href="https://medium.com/@mattklein123/the-human-scalability-of-devops-e36c37d3db6a">this blog</a>, Go-Jek too formed a small team in the early days to cope with maddening infrastructure requirements. The result, though good in the short-term, proved catastrophic in the long-term. We ended up with:</p>
 
 <ul>
-<li>A plethora of automation scripts spread across org.
-<code>image: https://docs.google.com/presentation/d/1e1MY3QpIYvEg2R-ickE95Ui4M6kfu9dNCywTkuGvNZw/edit#slide=id.g35c40a82c9_0_259</code></li>
-<li>Running above scripts required installing dependencies on each machine, not to mention access management for infra management tools
-<code>image: https://docs.google.com/presentation/d/1e1MY3QpIYvEg2R-ickE95Ui4M6kfu9dNCywTkuGvNZw/edit#slide=id.g35c5a44ec9_0_0</code></li>
+<li>A plethora of scripts spread across org</li>
+<li>A nightmare of managing dependencies of scripts</li>
+<li>Managing access for scripts' tools</li>
 </ul>
 
+
+<p><img src="http://olttwa.com/images/plethora-scripts.png" alt="plethora-scripts" />
+<img src="http://olttwa.com/images/scripts-dependencies.png" alt="scripts-dependencies" /></p>
 
 <hr />
 
 <h3>Running into problems</h3>
 
-<h5>Accidents</h5>
+<h4>Accidents</h4>
 
 <p>Using a kitchen knife you can cut vegetables and cook delicious food. Lose focus, and you end up hurting yourselves (sometimes others too). This goes without saying that widespread access to powerful tools like knife, AWS, gcloud has resulted in VMs being deleted and databases being dropped accidentally.</p>
 
-<h5>Maintenance of automation</h5>
+<h4>Maintenance</h4>
 
 <p>Having automation spread across org resulted in:</p>
 
 <ul>
-<li>Difficult onboarding of users to use automation scripts</li>
-<li>Propogating changes in automation across org</li>
-<li>Same task automated in multiple ways aka duplication of effort</li>
+<li>Multiple ways of performing similar tasks - <em>duplication of effort</em></li>
+<li>Dependency installation for using scripts painful - <em>onboarding issues</em></li>
+<li>Propagating changes in scripts across org almost impossible</li>
 </ul>
 
 
@@ -87,31 +83,32 @@
 
 <h3>Solving problems</h3>
 
-<h5>Centralize automation across org</h5>
+<h4>Centralize automation across org</h4>
 
 <ul>
-<li>central automation reservoir (1st component)</li>
-<li>since it&rsquo;s git, automation is versioned</li>
-<li>proctord (a web service) takes care of running this automation (2nd component)</li>
+<li>All <em>Procs</em> reside in a central automation reservoir</li>
+<li><em>Procs</em> are under version control</li>
+<li><em>proctord, a web service,</em> facilitates running of <em>Procs</em></li>
 </ul>
 
 
-<h5>Enable developers' contribution to automation</h5>
+<h4>Democratize contribution to automation</h4>
 
 <ul>
-<li>automation is packaged inside docker images</li>
-<li>immutable infra</li>
-<li>No restraints. ruby, python, bash, perl choose whatever you&rsquo;d like!</li>
+<li><em>Procs</em> are packaged inside docker images<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></li>
+<li>Dockerized <em>Procs</em> means <strong>no restraints</strong> for delopers contributing to automation. AWS, gcloud, chef, ansible choose whichever tools you like! ruby, python, bash, perl choose whichever language you like!</li>
+<li><em>proctord</em> provisions access to tools needed by <em>Procs</em> during runtime</li>
 </ul>
 
 
-<h5>Enable developers' utilization of automation</h5>
+<p><code>For building automation, your imagination is the limit!</code></p>
+
+<h4>Democratize utilization of automation</h4>
 
 <ul>
-<li>proctor binary sits on developers' machines. (3rd component)</li>
-<li>on executing an automation, the binary talks to proctord</li>
-<li>logs of automation script are streamed on the developer&rsquo;s machine from proctord to the binary</li>
-<li>developer is decoupled from addition/modification/deletion of automation. all changes in automation reservoir are registered to proctord. The binary reflects changes when it talks to proctord</li>
+<li>Using <em>proctor binary</em>, developers execute <em>Procs</em> from their CLI</li>
+<li><em>proctord</em> spins up <em>Procs</em> as jobs in a kubernetes cluster<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></li>
+<li><em>proctord</em> streams logs of <em>Procs</em> to user&rsquo;s CLI for feedback</li>
 </ul>
 
 
@@ -119,26 +116,40 @@
 
 <h3>Impact</h3>
 
-<p>We&rsquo;ve launched beta of Proctor at Go-Jek<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. Usage of automation across org has reduced ad-hoc tasks for our team by 70% over the past 3 months.</p>
+<p>We&rsquo;ve launched beta of Proctor at Go-Jek<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. Usage of automation across org has reduced ad-hoc tasks for the systems team by 70% over the past 3 months.</p>
 
-<p>Instead of providing access to powerful infra management tools;  we now build the utilities as automation and distribute it using Proctor. We now have controlled access to powerful tools.<a href="safety%20increases%20product%20usage">^3</a></p>
+<p>We now build the utilities of powerful tools as automation and distribute it using Proctor, enabling <em>controlled access</em>.<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></p>
+
+<hr />
+
+<h3>Conclusion</h3>
+
+<p>It took 3 components - <em>Procs, proctord and a binary</em> to solve automation at Go-Jek. To the end-user, using automation only requires a binary and an internet connection 😍</p>
 
 <hr />
 
 <h2>Open sourcing Proctor</h2>
 
-<p>We&rsquo;ve open sourced proctor. You can find the source code <a href="https://github.com/gojektech/proctor">here</a></p>
+<p>We&rsquo;ve open sourced Proctor. You can find the source code <a href="https://github.com/gojektech/proctor">here</a></p>
 
-<p>In an upcoming blog, we&rsquo;ll take a deep dive into the architecture of Proctor. We&rsquo;ll answer questions such as why using rundeck for automation didn&rsquo;t work for us, how we scale proctor infinitely, how do we manage secrets required to access powerful tools using proctord, etc.</p>
+<p>In an upcoming blog, we&rsquo;ll take a deep dive into the architecture of Proctor. We&rsquo;ll answer questions such as why using rundeck didn&rsquo;t work for us, how we scale Proctor, how we manage secrets and access to tools required by <em>Procs</em>, etc.</p>
+
+<hr />
 
 <p>I hope this blog was helpful 😀. Please leave your thoughts in the comments section below. You can reach out to me on email: akshat.iitj⚽gmail.com</p>
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
-<p><a href="https://a.com">a blog citing growth of go-jek</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>https://www.techinasia.com/gojek-insider-account-of-scaling-900x-doubling and https://blog.gojekengineering.com/200-engineers-261-million-people-go-jeks-impact-in-indonesia-b8f87934e6c1<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>Awaiting authentication before launching v1.0.0<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>Immutable infrastructure provides Proctor an edge over competing open source automation solutions<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>A k8s cluster helps us scale the automation orchestrator infinitely<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>Authentication is a blocker for v1.0.0 release<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>Adoption of product is inversely propotional to risk. Reference: <a href="https://ieeexplore.ieee.org/document/7476689/">https://ieeexplore.ieee.org/document/7476689/</a><a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
