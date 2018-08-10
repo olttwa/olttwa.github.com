@@ -70,15 +70,15 @@ Having automation spread across org resulted in:
 #### Democratize contribution to automation
 
 - *Procs* are packaged inside docker images[^2]
-- Dockerized *Procs* means __no restraints__ for delopers contributing to automation. AWS, gcloud, chef, ansible choose whichever tools you like! ruby, python, bash, perl choose whichever language you like!
-- *proctord* provisions access to tools needed by *Procs* during runtime
+- Dockerized *Procs* means __no restraints__ for developers contributing to automation. AWS, gcloud, chef, ansible choose whichever tools you like! ruby, python, bash, perl choose whichever language you like!
+- *proctord* provisions access to tools needed by *Procs* during runtime[^3]
 
 `For building automation, your imagination is the limit!`
 
 #### Democratize utilization of automation
 
 - Using *proctor binary*, developers execute *Procs* from their CLI
-- *proctord* spins up *Procs* as jobs in a kubernetes cluster[^3]
+- *proctord* spins up *Procs* as jobs in a kubernetes cluster[^4]
 - *proctord* streams logs of *Procs* to user's CLI for feedback
 
 ****
@@ -109,6 +109,7 @@ I hope this blog was helpful 😀. Please leave your thoughts in the comments se
 
 [^1]: https://www.techinasia.com/gojek-insider-account-of-scaling-900x-doubling and https://blog.gojekengineering.com/200-engineers-261-million-people-go-jeks-impact-in-indonesia-b8f87934e6c1
 [^2]: Immutable infrastructure provides Proctor an edge over competing open source automation solutions
-[^3]: A k8s cluster helps us scale the automation orchestrator infinitely
-[^4]: Authentication is a blocker for v1.0.0 release
-[^5]: Adoption of product is inversely propotional to risk. Reference: [https://ieeexplore.ieee.org/document/7476689/](https://ieeexplore.ieee.org/document/7476689/)
+[^3]: proctord provides required credentials of tools as environment variables to Procs
+[^4]: A k8s cluster helps us scale the automation orchestrator infinitely
+[^5]: Authentication is a blocker for v1.0.0 release
+[^6]: Adoption of product is inversely propotional to risk. Reference: [https://ieeexplore.ieee.org/document/7476689/](https://ieeexplore.ieee.org/document/7476689/)
